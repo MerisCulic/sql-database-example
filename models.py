@@ -8,3 +8,4 @@ class User(db.Model):
     name = db.Column(db.String, unique=False)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
+    session_token = db.Column(db.String)
