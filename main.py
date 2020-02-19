@@ -22,11 +22,15 @@ def index():
 def login():
     name = request.form.get("user-name")
     email = request.form.get("user-email")
+    password = request.form.get("user-password")
 
-    user = User(name=name, email=email)
+    user = User(name=name, email=email, password=password)
 
     db.add(user)
     db.commit()
+
+    if password != user.password:
+        return "WRONG PASSWORD! Go back and try again."
 
     response = make_response(redirect(url_for('index')))
     response.set_cookie("email", email)
